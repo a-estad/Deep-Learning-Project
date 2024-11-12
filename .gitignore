@@ -1,2 +1,5 @@
 dataset
 project_venv
+__pycache__
+submit.sh
+wandb
