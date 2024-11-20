@@ -29,4 +29,4 @@
 source /zhome/45/0/155089/deeplearning/venv/bin/activate
 
 # # Run the Python script
-python metapath2vec.py &> output_rgcn.txt
+python rgcn.py &> output_rgcn.txt
