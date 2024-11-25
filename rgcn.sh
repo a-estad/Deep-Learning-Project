@@ -28,5 +28,6 @@
 # # Activate the virtual environment
 source /zhome/45/0/155089/deeplearning/venv/bin/activate
 
-# # Run the Python script
-python rgcn.py &> output_rgcn.txt
+
+# Run the Python script with the --epochs argument
+python rgcn.py --epochs 100 &> output_rgcn_it_works.txt

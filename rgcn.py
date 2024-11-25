@@ -2,6 +2,8 @@ import copy
 import argparse
 import builtins
 import torch
+print(torch.cuda.is_available())
+print("look just above")
 import torch.nn.functional as F
 from torch.nn import Parameter, ModuleDict, ModuleList, Linear, ParameterDict
 from torch_sparse import SparseTensor
@@ -9,7 +11,7 @@ from torch_sparse import SparseTensor
 from ogb.nodeproppred import PygNodePropPredDataset, Evaluator
 
 from logger import Logger
-
+print("everything is loaded")
 
 class RGCNConv(torch.nn.Module):
     def __init__(self, in_channels, out_channels, node_types, edge_types):
@@ -140,7 +142,7 @@ def main():
     parser.add_argument('--hidden_channels', type=int, default=64)
     parser.add_argument('--dropout', type=float, default=0.5)
     parser.add_argument('--lr', type=float, default=0.01)
-    parser.add_argument('--epochs', type=int, default=10) # was 50
+    parser.add_argument('--epochs', type=int, default=50) # was 50
     parser.add_argument('--runs', type=int, default=10)
     parser.add_argument('--save_model', action='store_true', help="Save model to file") # save the model
     args = parser.parse_args()
@@ -150,9 +152,10 @@ def main():
     device = torch.device(device)
     
     # returnerer N ( no), for hver terminal spørgsmål så vi undgår EOFError
-    #builtins.input = lambda _: 'N'
+    builtins.input = lambda _: 'N'
+    print("builtins does not fuks up")
 
-    dataset = PygNodePropPredDataset(name='ogbn-mag', preprocessed=True) # added preprocessed=True
+    dataset = PygNodePropPredDataset(name='ogbn-mag') # added preprocessed=True, and deleted again
     split_idx = dataset.get_idx_split()
     data = dataset[0]
 

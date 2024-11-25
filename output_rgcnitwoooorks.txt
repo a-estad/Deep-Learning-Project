@@ -1,0 +1,185 @@
+/zhome/45/0/155089/deeplearning/venv/lib64/python3.9/site-packages/ogb/nodeproppred/dataset_pyg.py:69: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  self.data, self.slices = torch.load(self.processed_paths[0])
+True
+look just above
+everything is loaded
+Namespace(device=0, log_steps=1, num_layers=2, hidden_channels=64, dropout=0.5, lr=0.01, epochs=10, runs=10, save_model=False)
+builtins does not fuks up
+Data(
+  num_nodes_dict={
+    author=1134649,
+    field_of_study=59965,
+    institution=8740,
+    paper=736389,
+  },
+  edge_index_dict={
+    (author, affiliated_with, institution)=[2, 1043998],
+    (author, writes, paper)=[2, 7145660],
+    (paper, cites, paper)=[2, 5416271],
+    (paper, has_topic, field_of_study)=[2, 7505078],
+  },
+  x_dict={ paper=[736389, 128] },
+  node_year={ paper=[736389, 1] },
+  edge_reltype={
+    (author, affiliated_with, institution)=[1043998, 1],
+    (author, writes, paper)=[7145660, 1],
+    (paper, cites, paper)=[5416271, 1],
+    (paper, has_topic, field_of_study)=[7505078, 1],
+  },
+  y_dict={ paper=[736389, 1] }
+)
+Run: 01, Epoch: 01, Loss: 5.8641, Train: 9.62%, Valid: 5.74% Test: 5.69%
+Run: 01, Epoch: 02, Loss: 5.3170, Train: 10.71%, Valid: 5.76% Test: 6.43%
+Run: 01, Epoch: 03, Loss: 5.0070, Train: 11.82%, Valid: 8.33% Test: 11.14%
+Run: 01, Epoch: 04, Loss: 4.8478, Train: 16.21%, Valid: 11.32% Test: 14.64%
+Run: 01, Epoch: 05, Loss: 4.5639, Train: 16.61%, Valid: 10.73% Test: 13.07%
+Run: 01, Epoch: 06, Loss: 4.3334, Train: 17.23%, Valid: 11.50% Test: 13.94%
+Run: 01, Epoch: 07, Loss: 4.0606, Train: 20.90%, Valid: 13.74% Test: 15.92%
+Run: 01, Epoch: 08, Loss: 3.7798, Train: 28.13%, Valid: 20.46% Test: 23.33%
+Run: 01, Epoch: 09, Loss: 3.5419, Train: 31.89%, Valid: 23.71% Test: 26.29%
+Run: 01, Epoch: 10, Loss: 3.3119, Train: 37.63%, Valid: 27.81% Test: 29.54%
+Run 01:
+Highest Train: 37.63
+Highest Valid: 27.81
+  Final Train: 37.63
+   Final Test: 29.54
+Run: 02, Epoch: 01, Loss: 5.8794, Train: 8.75%, Valid: 4.53% Test: 6.84%
+Run: 02, Epoch: 02, Loss: 5.3408, Train: 10.92%, Valid: 5.52% Test: 7.41%
+Run: 02, Epoch: 03, Loss: 5.0154, Train: 10.13%, Valid: 7.85% Test: 8.57%
+Run: 02, Epoch: 04, Loss: 4.8246, Train: 17.76%, Valid: 13.62% Test: 15.47%
+Run: 02, Epoch: 05, Loss: 4.5892, Train: 17.90%, Valid: 11.86% Test: 13.51%
+Run: 02, Epoch: 06, Loss: 4.3463, Train: 17.57%, Valid: 11.46% Test: 13.61%
+Run: 02, Epoch: 07, Loss: 4.0880, Train: 19.96%, Valid: 12.58% Test: 14.93%
+Run: 02, Epoch: 08, Loss: 3.8160, Train: 26.41%, Valid: 19.19% Test: 22.24%
+Run: 02, Epoch: 09, Loss: 3.5756, Train: 31.55%, Valid: 25.03% Test: 27.85%
+Run: 02, Epoch: 10, Loss: 3.3418, Train: 38.28%, Valid: 31.21% Test: 33.23%
+Run 02:
+Highest Train: 38.28
+Highest Valid: 31.21
+  Final Train: 38.28
+   Final Test: 33.23
+Run: 03, Epoch: 01, Loss: 5.8613, Train: 8.49%, Valid: 5.10% Test: 4.44%
+Run: 03, Epoch: 02, Loss: 5.3086, Train: 8.50%, Valid: 5.08% Test: 4.43%
+Run: 03, Epoch: 03, Loss: 5.0239, Train: 12.06%, Valid: 10.33% Test: 13.82%
+Run: 03, Epoch: 04, Loss: 4.8491, Train: 16.11%, Valid: 12.34% Test: 16.14%
+Run: 03, Epoch: 05, Loss: 4.5955, Train: 19.16%, Valid: 14.04% Test: 17.16%
+Run: 03, Epoch: 06, Loss: 4.3680, Train: 19.45%, Valid: 12.90% Test: 15.10%
+Run: 03, Epoch: 07, Loss: 4.1076, Train: 21.90%, Valid: 16.21% Test: 18.22%
+Run: 03, Epoch: 08, Loss: 3.8399, Train: 26.31%, Valid: 19.83% Test: 21.61%
+Run: 03, Epoch: 09, Loss: 3.6037, Train: 32.92%, Valid: 24.74% Test: 27.20%
+Run: 03, Epoch: 10, Loss: 3.3538, Train: 35.89%, Valid: 27.12% Test: 29.74%
+Run 03:
+Highest Train: 35.89
+Highest Valid: 27.12
+  Final Train: 35.89
+   Final Test: 29.74
+Run: 04, Epoch: 01, Loss: 5.8570, Train: 4.54%, Valid: 2.28% Test: 1.41%
+Run: 04, Epoch: 02, Loss: 5.2951, Train: 5.63%, Valid: 2.95% Test: 2.10%
+Run: 04, Epoch: 03, Loss: 5.0729, Train: 12.86%, Valid: 7.56% Test: 10.15%
+Run: 04, Epoch: 04, Loss: 4.8668, Train: 13.31%, Valid: 10.79% Test: 14.74%
+Run: 04, Epoch: 05, Loss: 4.6239, Train: 16.81%, Valid: 12.71% Test: 16.45%
+Run: 04, Epoch: 06, Loss: 4.4115, Train: 18.47%, Valid: 12.47% Test: 15.32%
+Run: 04, Epoch: 07, Loss: 4.1415, Train: 22.34%, Valid: 14.68% Test: 16.87%
+Run: 04, Epoch: 08, Loss: 3.8367, Train: 28.27%, Valid: 19.05% Test: 20.75%
+Run: 04, Epoch: 09, Loss: 3.5818, Train: 32.09%, Valid: 26.45% Test: 28.99%
+Run: 04, Epoch: 10, Loss: 3.3516, Train: 34.14%, Valid: 29.42% Test: 31.48%
+Run 04:
+Highest Train: 34.14
+Highest Valid: 29.42
+  Final Train: 34.14
+   Final Test: 31.48
+Run: 05, Epoch: 01, Loss: 5.8980, Train: 5.56%, Valid: 2.71% Test: 2.12%
+Run: 05, Epoch: 02, Loss: 5.3707, Train: 5.70%, Valid: 2.97% Test: 2.57%
+Run: 05, Epoch: 03, Loss: 4.9889, Train: 14.87%, Valid: 11.65% Test: 15.17%
+Run: 05, Epoch: 04, Loss: 4.8900, Train: 16.23%, Valid: 11.66% Test: 14.87%
+Run: 05, Epoch: 05, Loss: 4.6108, Train: 18.01%, Valid: 12.77% Test: 15.66%
+Run: 05, Epoch: 06, Loss: 4.3686, Train: 21.51%, Valid: 14.58% Test: 16.91%
+Run: 05, Epoch: 07, Loss: 4.1105, Train: 25.02%, Valid: 17.36% Test: 19.32%
+Run: 05, Epoch: 08, Loss: 3.8050, Train: 28.51%, Valid: 21.71% Test: 24.19%
+Run: 05, Epoch: 09, Loss: 3.5565, Train: 31.92%, Valid: 26.60% Test: 29.24%
+Run: 05, Epoch: 10, Loss: 3.3430, Train: 36.31%, Valid: 30.88% Test: 33.05%
+Run 05:
+Highest Train: 36.31
+Highest Valid: 30.88
+  Final Train: 36.31
+   Final Test: 33.05
+Run: 06, Epoch: 01, Loss: 5.8737, Train: 4.76%, Valid: 2.43% Test: 1.55%
+Run: 06, Epoch: 02, Loss: 5.3628, Train: 4.82%, Valid: 2.46% Test: 1.55%
+Run: 06, Epoch: 03, Loss: 5.0286, Train: 12.73%, Valid: 7.39% Test: 9.85%
+Run: 06, Epoch: 04, Loss: 4.9223, Train: 13.94%, Valid: 8.89% Test: 11.90%
+Run: 06, Epoch: 05, Loss: 4.6359, Train: 17.83%, Valid: 14.58% Test: 17.48%
+Run: 06, Epoch: 06, Loss: 4.4130, Train: 24.39%, Valid: 17.58% Test: 20.06%
+Run: 06, Epoch: 07, Loss: 4.1638, Train: 27.22%, Valid: 19.72% Test: 22.16%
+Run: 06, Epoch: 08, Loss: 3.8580, Train: 28.62%, Valid: 20.91% Test: 23.45%
+Run: 06, Epoch: 09, Loss: 3.5807, Train: 31.85%, Valid: 23.69% Test: 26.34%
+Run: 06, Epoch: 10, Loss: 3.3284, Train: 36.48%, Valid: 27.87% Test: 30.26%
+Run 06:
+Highest Train: 36.48
+Highest Valid: 27.87
+  Final Train: 36.48
+   Final Test: 30.26
+Run: 07, Epoch: 01, Loss: 5.8480, Train: 7.71%, Valid: 4.53% Test: 4.50%
+Run: 07, Epoch: 02, Loss: 5.3033, Train: 7.87%, Valid: 4.59% Test: 4.44%
+Run: 07, Epoch: 03, Loss: 5.0221, Train: 12.26%, Valid: 7.48% Test: 8.23%
+Run: 07, Epoch: 04, Loss: 4.8447, Train: 15.23%, Valid: 10.39% Test: 12.39%
+Run: 07, Epoch: 05, Loss: 4.5836, Train: 16.54%, Valid: 11.11% Test: 13.37%
+Run: 07, Epoch: 06, Loss: 4.3449, Train: 18.45%, Valid: 12.47% Test: 14.81%
+Run: 07, Epoch: 07, Loss: 4.0803, Train: 22.14%, Valid: 14.23% Test: 16.65%
+Run: 07, Epoch: 08, Loss: 3.8003, Train: 26.79%, Valid: 17.77% Test: 20.00%
+Run: 07, Epoch: 09, Loss: 3.5563, Train: 32.77%, Valid: 23.92% Test: 25.91%
+Run: 07, Epoch: 10, Loss: 3.3188, Train: 38.21%, Valid: 29.13% Test: 30.57%
+Run 07:
+Highest Train: 38.21
+Highest Valid: 29.13
+  Final Train: 38.21
+   Final Test: 30.57
+Run: 08, Epoch: 01, Loss: 5.8556, Train: 8.85%, Valid: 4.63% Test: 5.42%
+Run: 08, Epoch: 02, Loss: 5.3330, Train: 12.53%, Valid: 5.90% Test: 7.58%
+Run: 08, Epoch: 03, Loss: 5.0095, Train: 11.30%, Valid: 7.20% Test: 7.35%
+Run: 08, Epoch: 04, Loss: 4.8521, Train: 16.13%, Valid: 9.90% Test: 11.32%
+Run: 08, Epoch: 05, Loss: 4.5952, Train: 18.27%, Valid: 11.93% Test: 13.94%
+Run: 08, Epoch: 06, Loss: 4.3618, Train: 22.15%, Valid: 15.04% Test: 17.65%
+Run: 08, Epoch: 07, Loss: 4.0661, Train: 25.64%, Valid: 19.72% Test: 23.08%
+Run: 08, Epoch: 08, Loss: 3.7804, Train: 29.31%, Valid: 23.49% Test: 26.43%
+Run: 08, Epoch: 09, Loss: 3.5337, Train: 33.44%, Valid: 26.86% Test: 29.06%
+Run: 08, Epoch: 10, Loss: 3.2853, Train: 39.17%, Valid: 29.86% Test: 31.48%
+Run 08:
+Highest Train: 39.17
+Highest Valid: 29.86
+  Final Train: 39.17
+   Final Test: 31.48
+Run: 09, Epoch: 01, Loss: 5.8974, Train: 8.85%, Valid: 5.25% Test: 4.50%
+Run: 09, Epoch: 02, Loss: 5.3743, Train: 8.90%, Valid: 5.44% Test: 4.67%
+Run: 09, Epoch: 03, Loss: 4.9868, Train: 13.04%, Valid: 7.93% Test: 10.87%
+Run: 09, Epoch: 04, Loss: 4.8372, Train: 13.98%, Valid: 10.50% Test: 14.02%
+Run: 09, Epoch: 05, Loss: 4.5764, Train: 18.92%, Valid: 12.02% Test: 14.50%
+Run: 09, Epoch: 06, Loss: 4.3388, Train: 19.88%, Valid: 12.30% Test: 14.18%
+Run: 09, Epoch: 07, Loss: 4.0925, Train: 22.85%, Valid: 14.81% Test: 16.79%
+Run: 09, Epoch: 08, Loss: 3.8074, Train: 28.46%, Valid: 20.33% Test: 22.56%
+Run: 09, Epoch: 09, Loss: 3.5669, Train: 32.64%, Valid: 26.40% Test: 29.47%
+Run: 09, Epoch: 10, Loss: 3.3356, Train: 36.99%, Valid: 30.42% Test: 32.60%
+Run 09:
+Highest Train: 36.99
+Highest Valid: 30.42
+  Final Train: 36.99
+   Final Test: 32.60
+Run: 10, Epoch: 01, Loss: 5.8916, Train: 9.98%, Valid: 7.31% Test: 7.41%
+Run: 10, Epoch: 02, Loss: 5.3843, Train: 13.06%, Valid: 8.40% Test: 9.82%
+Run: 10, Epoch: 03, Loss: 4.9806, Train: 11.42%, Valid: 6.09% Test: 7.17%
+Run: 10, Epoch: 04, Loss: 4.8872, Train: 14.36%, Valid: 8.34% Test: 10.42%
+Run: 10, Epoch: 05, Loss: 4.6106, Train: 19.30%, Valid: 12.95% Test: 15.79%
+Run: 10, Epoch: 06, Loss: 4.3683, Train: 21.91%, Valid: 14.73% Test: 17.61%
+Run: 10, Epoch: 07, Loss: 4.1199, Train: 25.05%, Valid: 17.23% Test: 20.00%
+Run: 10, Epoch: 08, Loss: 3.8292, Train: 27.97%, Valid: 20.21% Test: 23.16%
+Run: 10, Epoch: 09, Loss: 3.5784, Train: 32.21%, Valid: 24.67% Test: 27.31%
+Run: 10, Epoch: 10, Loss: 3.3397, Train: 38.11%, Valid: 29.31% Test: 31.58%
+Run 10:
+Highest Train: 38.11
+Highest Valid: 29.31
+  Final Train: 38.11
+   Final Test: 31.58
+All runs:
+Highest Train: 37.12 ± 1.47
+Highest Valid: 29.30 ± 1.37
+  Final Train: 37.12 ± 1.47
+   Final Test: 31.35 ± 1.32
