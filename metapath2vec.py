@@ -107,12 +107,17 @@ def test(train_ratio=0.1):
 
     z = model('paper', batch=torch.arange(0, 736389).to(device))
     y = data.y_dict['paper'].ravel()
+    
+    
+    dataset = PygNodePropPredDataset(name='ogbn-mag') # added preprocessed=True, and deleted again
+    split_idx = dataset.get_idx_split()
 
     perm = torch.randperm(z.size(0))
     train_perm = perm[:int(z.size(0) * train_ratio)]
     test_perm = perm[int(z.size(0) * train_ratio):]
+    return model.test(z[split_idx['train']], y[split_idx['train']], z[split_idx['test']], y[split_idx['test']], max_iter=150)
 
-    return model.test(z[train_perm], y[train_perm], z[test_perm], y[test_perm], max_iter=150)
+   # return model.test(z[train_perm], y[train_perm], z[test_perm], y[test_perm], max_iter=150)
 
 
 for epoch in range(1, config.epochs + 1):

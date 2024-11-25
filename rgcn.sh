@@ -30,4 +30,4 @@ source /zhome/45/0/155089/deeplearning/venv/bin/activate
 
 
 # Run the Python script with the --epochs argument
-python rgcn.py --epochs 100 &> output_rgcn_it_works.txt
+python rgcn_v2.py --epochs 50 &> output_rgcn_v2_349.txt
