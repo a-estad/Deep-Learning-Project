@@ -109,9 +109,8 @@ def test(train_ratio=0.1):
     y = data.y_dict['paper'].ravel()
     
     
-    dataset = PygNodePropPredDataset(name='ogbn-mag') # added preprocessed=True, and deleted again
+    dataset = PygNodePropPredDataset(name='ogbn-mag') 
     split_idx = dataset.get_idx_split()
-
     perm = torch.randperm(z.size(0))
     train_perm = perm[:int(z.size(0) * train_ratio)]
     test_perm = perm[int(z.size(0) * train_ratio):]
