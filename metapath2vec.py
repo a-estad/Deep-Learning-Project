@@ -23,7 +23,7 @@ run = wandb.init(
         "num_workers": 6,
     },
 )
-
+ 
 # %%
 dataset = PygNodePropPredDataset(name="ogbn-mag")
 
@@ -125,5 +125,9 @@ for epoch in range(1, config.epochs + 1):
     acc = test()
     print(f'Epoch: {epoch}, Accuracy: {acc:.4f}')
     wandb.log({"epoch": epoch, "accuracy": acc})
+embeddings = model.get_embeddings()
+x_dict = {
+    'paper': 
+}
 
 wandb.finish()
