@@ -5,7 +5,7 @@ from torch_geometric.nn import MetaPath2Vec
 from torch_sparse import transpose
 import torch
 import wandb
-
+import os 
 wandb.login(key="9eb3b1f3cebec1405d992e1e1f05fe7aa1d718e4")
 
 # %%
@@ -15,9 +15,9 @@ run = wandb.init(
     # Track hyperparameters and run metadata
     config={
         "learning_rate": 0.01,
-        "epochs": 1,
+        "epochs": 4,
         "embedding_dim": 128,
-        "walk_length": 20,
+        "walk_length": 64,
         "context_size": 7,
         "walks_per_node": 5,
         "num_negative_samples": 5,
@@ -108,16 +108,54 @@ def test(train_ratio=0.1):
     model.eval()
 
     z = model('paper', batch=torch.arange(0, 736389).to(device))
-    y = data.y_dict['paper'].ravel()
+    y = data.y_dict['paper'].ravel().to(device)
     
     dataset = PygNodePropPredDataset(name='ogbn-mag') 
     split_idx = dataset.get_idx_split()
-    perm = torch.randperm(z.size(0))
-    train_perm = perm[:int(z.size(0) * train_ratio)]
-    test_perm = perm[int(z.size(0) * train_ratio):]
-    return model.test(z[split_idx['train']], y[split_idx['train']], z[split_idx['test']], y[split_idx['test']], max_iter=150)
+    #perm = torch.randperm(z.size(0))
+    #train_perm = perm[:int(z.size(0) * train_ratio)]
+    #test_perm = perm[int(z.size(0) * train_ratio):]
+    train_idx = split_idx['train']['paper'].to(device)
+    test_idx = split_idx['test']['paper'].to(device)
+    
+    
+    print(f"z device: {z.device}")
+    print(f"train_idx device: {train_idx.device}, test_idx device: {test_idx.device}")
+    print(f"y device: {y.device}")
+
+
+    return model.test(z[train_idx], y[train_idx], z[test_idx], y[test_idx], max_iter=150)
 
    # return model.test(z[train_perm], y[train_perm], z[test_perm], y[test_perm], max_iter=150)
+
+
+# Generer en unik identifier baseret på hyperparametrene
+hyperparam_identifier = f"lr_{wandb.config.learning_rate}_dim_{wandb.config.embedding_dim}_walklen_{wandb.config.walk_length}_walks_{wandb.config.walks_per_node}"
+
+# Opret en mappe til embeddings baseret på hyperparametrene
+output_dir = f"embeddings/{hyperparam_identifier}"
+os.makedirs(output_dir, exist_ok=True)
+
+@torch.no_grad()
+def save_embeddings():
+    model.eval()
+
+    for node_type in data.num_nodes_dict.keys():
+        print(f"Fetching embeddings for node type: {node_type}")
+        embeddings = model(node_type)
+
+        # Gem som PyTorch tensor med hyperparametre i filnavnet
+        torch.save(embeddings.cpu(), f"{output_dir}/{node_type}_embeddings_4epochs.pt")
+
+        # Alternativt gem som CSV med hyperparametre i filnavnet
+        embeddings_numpy = embeddings.cpu().numpy()
+        with open(f"{output_dir}/{node_type}_embeddings.csv", "w") as f:
+            for row in embeddings_numpy:
+                f.write(",".join(map(str, row)) + "\n")
+
+    print(f"Embeddings gemt i mappen: {output_dir}")
+
+
 
 
 for epoch in range(1, config.epochs + 1):
@@ -125,29 +163,7 @@ for epoch in range(1, config.epochs + 1):
     acc = test()
     print(f'Epoch: {epoch}, Accuracy: {acc:.4f}')
     wandb.log({"epoch": epoch, "accuracy": acc})
-
-import os
-import torch
-
-# Opret en mappe til at gemme embeddings
-os.makedirs("embeddings", exist_ok=True)
-
-# Hent embeddings for alle nodetyper og gem dem
-for node_type in data.num_nodes_dict.keys():
-    print(f"Fetching embeddings for node type: {node_type}")
-    embeddings = model(node_type)
-    
-    # Gem som PyTorch tensor
-    torch.save(embeddings.cpu(), f"embeddings/{node_type}_embeddings.pt")
-    
-    # Alternativt gem som CSV
-    embeddings_numpy = embeddings.cpu().numpy()
-    with open(f"embeddings/{node_type}_embeddings.csv", "w") as f:
-        for row in embeddings_numpy:
-            f.write(",".join(map(str, row)) + "\n")
-
-print("Embeddings gemt!")
-
+save_embeddings()
 
 
 

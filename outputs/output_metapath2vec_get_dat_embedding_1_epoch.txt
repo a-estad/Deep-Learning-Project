@@ -1,0 +1,155 @@
+wandb: Using wandb-core as the SDK backend.  Please refer to https://wandb.me/wandb-core for more information.
+wandb: Currently logged in as: jbirkc (jbirkc-danmarks-tekniske-universitet-dtu). Use `wandb login --relogin` to force relogin
+wandb: Appending key for api.wandb.ai to your netrc file: /zhome/45/0/155089/.netrc
+wandb: Tracking run with wandb version 0.18.7
+wandb: Run data is saved locally in /zhome/45/0/155089/deeplearning/Deep-Learning-Project/wandb/run-20241127_084112-2otiva0j
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run winter-firebrand-6
+wandb: ⭐️ View project at https://wandb.ai/jbirkc-danmarks-tekniske-universitet-dtu/meta-path2vec
+wandb: 🚀 View run at https://wandb.ai/jbirkc-danmarks-tekniske-universitet-dtu/meta-path2vec/runs/2otiva0j
+/zhome/45/0/155089/deeplearning/venv/lib64/python3.9/site-packages/ogb/nodeproppred/dataset_pyg.py:69: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  self.data, self.slices = torch.load(self.processed_paths[0])
+/zhome/45/0/155089/deeplearning/venv/lib64/python3.9/site-packages/torch/utils/data/dataloader.py:617: UserWarning: This DataLoader will create 6 worker processes in total. Our suggested max number of worker in current system is 4, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(
+Using GPU
+/zhome/45/0/155089/deeplearning/venv/lib64/python3.9/site-packages/ogb/nodeproppred/dataset_pyg.py:69: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  self.data, self.slices = torch.load(self.processed_paths[0])
+/zhome/45/0/155089/deeplearning/venv/lib64/python3.9/site-packages/ogb/nodeproppred/dataset_pyg.py:69: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  self.data, self.slices = torch.load(self.processed_paths[0])
+/zhome/45/0/155089/deeplearning/venv/lib64/python3.9/site-packages/ogb/nodeproppred/dataset_pyg.py:69: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  self.data, self.slices = torch.load(self.processed_paths[0])
+/zhome/45/0/155089/deeplearning/venv/lib64/python3.9/site-packages/ogb/nodeproppred/dataset_pyg.py:69: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  self.data, self.slices = torch.load(self.processed_paths[0])
+/zhome/45/0/155089/deeplearning/venv/lib64/python3.9/site-packages/ogb/nodeproppred/dataset_pyg.py:69: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  self.data, self.slices = torch.load(self.processed_paths[0])
+wandb: - 0.019 MB of 0.019 MB uploadedwandb: \ 0.019 MB of 0.019 MB uploadedwandb:                                                                                
+wandb: 
+wandb: Run history:
+wandb: accuracy ▁▂▄▇█
+wandb:    epoch ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:     loss █▇▆▅▅▄▄▄▄▄▃▃▃▃▃▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▁▁▁▁▁▁▁▁▁▁
+wandb:     step ▁▁▁▁▁▂▂▂▂▃▃▃▃▃▃▄▄▄▄▄▅▅▅▅▅▅▅▆▆▆▇▇▇▇▇▇▇▇██
+wandb: 
+wandb: Run summary:
+wandb: accuracy 0.07113
+wandb:    epoch 1
+wandb:     loss 1.45964
+wandb:     step 8800
+wandb: 
+wandb: 🚀 View run winter-firebrand-6 at: https://wandb.ai/jbirkc-danmarks-tekniske-universitet-dtu/meta-path2vec/runs/2otiva0j
+wandb: ⭐️ View project at: https://wandb.ai/jbirkc-danmarks-tekniske-universitet-dtu/meta-path2vec
+wandb: Synced 5 W&B file(s), 0 media file(s), 2 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20241127_084112-2otiva0j/logs
+Epoch: 1, Step: 00100/8865, Loss: 8.9110
+Epoch: 1, Step: 00200/8865, Loss: 8.1706
+Epoch: 1, Step: 00300/8865, Loss: 7.5971
+Epoch: 1, Step: 00400/8865, Loss: 7.0868
+Epoch: 1, Step: 00500/8865, Loss: 6.6416
+Epoch: 1, Step: 00600/8865, Loss: 6.2674
+Epoch: 1, Step: 00700/8865, Loss: 5.9180
+Epoch: 1, Step: 00800/8865, Loss: 5.6222
+Epoch: 1, Step: 00900/8865, Loss: 5.3632
+Epoch: 1, Step: 01000/8865, Loss: 5.1427
+Epoch: 1, Step: 01100/8865, Loss: 4.9435
+Epoch: 1, Step: 01200/8865, Loss: 4.7781
+Epoch: 1, Step: 01300/8865, Loss: 4.6180
+Epoch: 1, Step: 01400/8865, Loss: 4.4746
+Epoch: 1, Step: 01500/8865, Loss: 4.3349
+Epoch: 1, Step: 01600/8865, Loss: 4.2021
+Epoch: 1, Step: 01700/8865, Loss: 4.0745
+Epoch: 1, Step: 01800/8865, Loss: 3.9589
+Epoch: 1, Step: 01900/8865, Loss: 3.8429
+Epoch: 1, Step: 02000/8865, Loss: 3.7402
+z device: cuda:0
+train_idx device: cuda:0, test_idx device: cuda:0
+y device: cuda:0
+Epoch: 1, Step: 02000/8865, Acc: 0.0263
+Epoch: 1, Step: 02100/8865, Loss: 3.6372
+Epoch: 1, Step: 02200/8865, Loss: 3.5393
+Epoch: 1, Step: 02300/8865, Loss: 3.4490
+Epoch: 1, Step: 02400/8865, Loss: 3.3633
+Epoch: 1, Step: 02500/8865, Loss: 3.2825
+Epoch: 1, Step: 02600/8865, Loss: 3.2022
+Epoch: 1, Step: 02700/8865, Loss: 3.1304
+Epoch: 1, Step: 02800/8865, Loss: 3.0611
+Epoch: 1, Step: 02900/8865, Loss: 2.9993
+Epoch: 1, Step: 03000/8865, Loss: 2.9345
+Epoch: 1, Step: 03100/8865, Loss: 2.8776
+Epoch: 1, Step: 03200/8865, Loss: 2.8249
+Epoch: 1, Step: 03300/8865, Loss: 2.7679
+Epoch: 1, Step: 03400/8865, Loss: 2.7215
+Epoch: 1, Step: 03500/8865, Loss: 2.6718
+Epoch: 1, Step: 03600/8865, Loss: 2.6248
+Epoch: 1, Step: 03700/8865, Loss: 2.5855
+Epoch: 1, Step: 03800/8865, Loss: 2.5424
+Epoch: 1, Step: 03900/8865, Loss: 2.5027
+Epoch: 1, Step: 04000/8865, Loss: 2.4685
+z device: cuda:0
+train_idx device: cuda:0, test_idx device: cuda:0
+y device: cuda:0
+Epoch: 1, Step: 04000/8865, Acc: 0.0323
+Epoch: 1, Step: 04100/8865, Loss: 2.4308
+Epoch: 1, Step: 04200/8865, Loss: 2.3929
+Epoch: 1, Step: 04300/8865, Loss: 2.3616
+Epoch: 1, Step: 04400/8865, Loss: 2.3242
+Epoch: 1, Step: 04500/8865, Loss: 2.2995
+Epoch: 1, Step: 04600/8865, Loss: 2.2675
+Epoch: 1, Step: 04700/8865, Loss: 2.2364
+Epoch: 1, Step: 04800/8865, Loss: 2.2084
+Epoch: 1, Step: 04900/8865, Loss: 2.1842
+Epoch: 1, Step: 05000/8865, Loss: 2.1577
+Epoch: 1, Step: 05100/8865, Loss: 2.1302
+Epoch: 1, Step: 05200/8865, Loss: 2.1066
+Epoch: 1, Step: 05300/8865, Loss: 2.0806
+Epoch: 1, Step: 05400/8865, Loss: 2.0559
+Epoch: 1, Step: 05500/8865, Loss: 2.0330
+Epoch: 1, Step: 05600/8865, Loss: 2.0112
+Epoch: 1, Step: 05700/8865, Loss: 1.9912
+Epoch: 1, Step: 05800/8865, Loss: 1.9703
+Epoch: 1, Step: 05900/8865, Loss: 1.9473
+Epoch: 1, Step: 06000/8865, Loss: 1.9251
+z device: cuda:0
+train_idx device: cuda:0, test_idx device: cuda:0
+y device: cuda:0
+Epoch: 1, Step: 06000/8865, Acc: 0.0446
+Epoch: 1, Step: 06100/8865, Loss: 1.9055
+Epoch: 1, Step: 06200/8865, Loss: 1.8853
+Epoch: 1, Step: 06300/8865, Loss: 1.8655
+Epoch: 1, Step: 06400/8865, Loss: 1.8484
+Epoch: 1, Step: 06500/8865, Loss: 1.8293
+Epoch: 1, Step: 06600/8865, Loss: 1.8098
+Epoch: 1, Step: 06700/8865, Loss: 1.7924
+Epoch: 1, Step: 06800/8865, Loss: 1.7709
+Epoch: 1, Step: 06900/8865, Loss: 1.7544
+Epoch: 1, Step: 07000/8865, Loss: 1.7382
+Epoch: 1, Step: 07100/8865, Loss: 1.7201
+Epoch: 1, Step: 07200/8865, Loss: 1.7022
+Epoch: 1, Step: 07300/8865, Loss: 1.6872
+Epoch: 1, Step: 07400/8865, Loss: 1.6687
+Epoch: 1, Step: 07500/8865, Loss: 1.6540
+Epoch: 1, Step: 07600/8865, Loss: 1.6371
+Epoch: 1, Step: 07700/8865, Loss: 1.6214
+Epoch: 1, Step: 07800/8865, Loss: 1.6072
+Epoch: 1, Step: 07900/8865, Loss: 1.5919
+Epoch: 1, Step: 08000/8865, Loss: 1.5733
+z device: cuda:0
+train_idx device: cuda:0, test_idx device: cuda:0
+y device: cuda:0
+Epoch: 1, Step: 08000/8865, Acc: 0.0622
+Epoch: 1, Step: 08100/8865, Loss: 1.5575
+Epoch: 1, Step: 08200/8865, Loss: 1.5439
+Epoch: 1, Step: 08300/8865, Loss: 1.5298
+Epoch: 1, Step: 08400/8865, Loss: 1.5160
+Epoch: 1, Step: 08500/8865, Loss: 1.5013
+Epoch: 1, Step: 08600/8865, Loss: 1.4882
+Epoch: 1, Step: 08700/8865, Loss: 1.4713
+Epoch: 1, Step: 08800/8865, Loss: 1.4596
+z device: cuda:0
+train_idx device: cuda:0, test_idx device: cuda:0
+y device: cuda:0
+Epoch: 1, Accuracy: 0.0711
+Fetching embeddings for node type: author
+Fetching embeddings for node type: field_of_study
+Fetching embeddings for node type: institution
+Fetching embeddings for node type: paper
+Embeddings gemt i mappen: embeddings/lr_0.01_dim_128_walklen_20_walks_5

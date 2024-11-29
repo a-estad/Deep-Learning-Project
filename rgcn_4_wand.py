@@ -1,28 +1,24 @@
 import copy
 import argparse
 import builtins
+import os
 import torch
-print(torch.cuda.is_available())
-print("look just above")
+import wandb
 import torch.nn.functional as F
 from torch.nn import Parameter, ModuleDict, ModuleList, Linear, ParameterDict
 from torch_sparse import SparseTensor
 from ogb.nodeproppred import PygNodePropPredDataset, Evaluator
 from logger import Logger
-import os 
-print("everything is loaded")
-os.system("nvidia-smi")
 
 class RGCNConv(torch.nn.Module):
     def __init__(self, in_channels, out_channels, node_types, edge_types):
         super(RGCNConv, self).__init__()
 
-        self.in_channels = in_channels # length of embedding vector ( defined )data.x_dict['paper'].size(-1) ( 128 for word2vec)
-        self.out_channels = out_channels # dataset.num_classes
+        self.in_channels = in_channels
+        self.out_channels = out_channels
 
-        # `ModuleDict` does not allow tuples :(
         self.rel_lins = ModuleDict({
-            f'{key[0]}_{key[1]}_{key[2]}': Linear(in_channels, out_channels,bias=False)
+            f'{key[0]}_{key[1]}_{key[2]}': Linear(in_channels, out_channels, bias=False)
             for key in edge_types
         })
 
@@ -47,7 +43,7 @@ class RGCNConv(torch.nn.Module):
         for key, adj_t in adj_t_dict.items():
             key_str = f'{key[0]}_{key[1]}_{key[2]}'
             x = x_dict[key[0]]
-            out = self.rel_lins[key_str](adj_t.matmul(x, reduce='mean')) # normalization constant.
+            out = self.rel_lins[key_str](adj_t.matmul(x, reduce='mean'))
             out_dict[key[2]].add_(out)
 
         return out_dict
@@ -61,8 +57,8 @@ class RGCN(torch.nn.Module):
         node_types = list(num_nodes_dict.keys())
 
         self.embs = ParameterDict({
-            key: Parameter(torch.Tensor(num_nodes_dict[key], in_channels)) # is there embedding for this node type?
-            for key in set(node_types).difference(set(x_types)) # If not, we initialize embedding down in xavier. 
+            key: Parameter(torch.Tensor(num_nodes_dict[key], in_channels))
+            for key in set(node_types).difference(set(x_types))
         })
 
         self.convs = ModuleList()
@@ -70,8 +66,7 @@ class RGCN(torch.nn.Module):
             RGCNConv(in_channels, hidden_channels, node_types, edge_types))
         for _ in range(num_layers - 2):
             self.convs.append(
-                RGCNConv(hidden_channels, hidden_channels, node_types,
-                         edge_types))
+                RGCNConv(hidden_channels, hidden_channels, node_types, edge_types))
         self.convs.append(
             RGCNConv(hidden_channels, out_channels, node_types, edge_types))
 
@@ -81,8 +76,7 @@ class RGCN(torch.nn.Module):
 
     def reset_parameters(self):
         for emb in self.embs.values():
-            
-            torch.nn.init.xavier_uniform_(emb) # perhaps here you initialize embedding of nodes whose embedding is  not predefined uniform 
+            torch.nn.init.xavier_uniform_(emb)
         for conv in self.convs:
             conv.reset_parameters()
 
@@ -95,8 +89,7 @@ class RGCN(torch.nn.Module):
             x_dict = conv(x_dict, adj_t_dict)
             for key, x in x_dict.items():
                 x_dict[key] = F.relu(x)
-                x_dict[key] = F.dropout(x, p=self.dropout,
-                                        training=self.training)
+                x_dict[key] = F.dropout(x, p=self.dropout, training=self.training)
         return self.convs[-1](x_dict, adj_t_dict)
 
 
@@ -139,38 +132,34 @@ def main():
     parser.add_argument('--device', type=int, default=0)
     parser.add_argument('--log_steps', type=int, default=1)
     parser.add_argument('--num_layers', type=int, default=2)
-    parser.add_argument('--hidden_channels', type=int, default=349) # set dat boi up to 349 
+    parser.add_argument('--hidden_channels', type=int, default=64)
     parser.add_argument('--dropout', type=float, default=0.5)
     parser.add_argument('--lr', type=float, default=0.01)
-    parser.add_argument('--epochs', type=int, default=50) # was 50
+    parser.add_argument('--epochs', type=int, default=50)
     parser.add_argument('--runs', type=int, default=10)
-    parser.add_argument('--save_model', action='store_true', help="Save model to file") # save the model
+    parser.add_argument('--save_model', action='store_true', help="Save model to file")
     args = parser.parse_args()
-    print(args)
+
+    wandb.init(project="ogbn-mag", config=vars(args))
 
     device = f'cuda:{args.device}' if torch.cuda.is_available() else 'cpu'
     device = torch.device(device)
-    
-    # returnerer N ( no), for hver terminal spørgsmål så vi undgår EOFError
-    builtins.input = lambda _: 'N'
-    print("builtins does not fuks up")
 
-    dataset = PygNodePropPredDataset(name='ogbn-mag') # added preprocessed=True, and deleted again
+    builtins.input = lambda _: 'N'
+
+    dataset = PygNodePropPredDataset(name='ogbn-mag')
     split_idx = dataset.get_idx_split()
     data = dataset[0]
 
-    # We do not consider those attributes for now.
+    wandb.config.update({"dataset": "ogbn-mag"})
+
     data.node_year_dict = None
     data.edge_reltype_dict = None
 
-    print(data)
-
-    # Convert to new transposed `SparseTensor` format and add reverse edges.
     data.adj_t_dict = {}
     for keys, (row, col) in data.edge_index_dict.items():
         sizes = (data.num_nodes_dict[keys[0]], data.num_nodes_dict[keys[2]])
         adj = SparseTensor(row=row, col=col, sparse_sizes=sizes)
-        # adj = SparseTensor(row=row, col=col)[:sizes[0], :sizes[1]] # TEST
         if keys[0] != keys[2]:
             data.adj_t_dict[keys] = adj.t()
             data.adj_t_dict[(keys[2], 'to', keys[0])] = adj
@@ -195,6 +184,9 @@ def main():
     for run in range(args.runs):
         model.reset_parameters()
         optimizer = torch.optim.Adam(model.parameters(), lr=args.lr)
+
+        wandb.run.name = f"run-{run + 1}-hidden-{args.hidden_channels}-lr-{args.lr}"
+
         for epoch in range(1, 1 + args.epochs):
             loss = train(model, data.x_dict, data.adj_t_dict,
                          data.y_dict['paper'], train_idx, optimizer)
@@ -202,8 +194,16 @@ def main():
                           data.y_dict['paper'], split_idx, evaluator)
             logger.add_result(run, result)
 
+            train_acc, valid_acc, test_acc = result
+            wandb.log({
+                'epoch': epoch,
+                'loss': loss,
+                'train_acc': 100 * train_acc,
+                'valid_acc': 100 * valid_acc,
+                'test_acc': 100 * test_acc,
+            })
+
             if epoch % args.log_steps == 0:
-                train_acc, valid_acc, test_acc = result
                 print(f'Run: {run + 1:02d}, '
                       f'Epoch: {epoch:02d}, '
                       f'Loss: {loss:.4f}, '
@@ -215,11 +215,11 @@ def main():
         if args.save_model:
             model_path = os.path.join(os.getcwd(), f'model_run_{run+1}.pth')
             torch.save(model.state_dict(), model_path)
+            wandb.save(model_path)
             print(f"Model for run {run+1} saved to {model_path}")
-            #f_log.write(f"Model for run {run+1} saved to {model_path}\n")
 
     logger.print_statistics()
-
+    wandb.finish()
 
 
 if __name__ == "__main__":
