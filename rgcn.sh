@@ -3,7 +3,7 @@
 # ## -- specify queue -
 # BSUB -q gpuv100
 # ## -- set the job Name -
-# BSUB -J rcgny
+# BSUB -J rcgn_metapath
 # ## -- ask for number of cores (default: 1) -
 # ## -- request 6 CPU cores -
 # BSUB -n 6
@@ -31,5 +31,10 @@ source /zhome/45/0/155089/deeplearning/venv/bin/activate
 
 # Run the Python script with the --epochs argument
 #python rgcn_v2.py --epochs 50 &> output_rgcn_v2_349.txt
+python /zhome/45/0/155089/deeplearning/Deep-Learning-Project/rgcn_4_wand_m2vinit.py \
+--embedding_dir /zhome/45/0/155089/deeplearning/Deep-Learning-Project/embeddings \
+--embedding_dim 128 \
+--epochs 50 &> output_rgcn_wandb_isworkingomg_30_11_44_metpath2vecinit_64_chan_0.01_lr.txt
 
-python rgcn_4_wand.py --epochs 50 &> output_rgcn_wandb_64_chan_0.01_lr.txt
+#python Johannestestscriptlolmetpath2vecRGCN.py --epochs 50 &> output_rgcn_wandb_metpath2vecinit_64_chan_0.01_lr_2.txt
+
