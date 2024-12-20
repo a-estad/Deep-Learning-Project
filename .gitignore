@@ -4,3 +4,4 @@ __pycache__
 submit.sh
 wandb
 embeddings
+outputs
