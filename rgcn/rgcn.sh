@@ -34,7 +34,7 @@ source /zhome/45/0/155089/deeplearning/venv/bin/activate
 python /zhome/45/0/155089/deeplearning/Deep-Learning-Project/rgcn_4_wand_m2vinit.py \
 --embedding_dir /zhome/45/0/155089/deeplearning/Deep-Learning-Project/embeddings \
 --embedding_dim 128 \
---epochs 50 &> output_rgcn_wandb_isworkingomg_30_11_44_metpath2vecinit_64_chan_0.01_lr.txt
+--epochs 50 &> outputs/output_rgcn_wandb_isworkingomg_30_11_44_metpath2vecinit_64_chan_0.01_lr.txt
 
 #python Johannestestscriptlolmetpath2vecRGCN.py --epochs 50 &> output_rgcn_wandb_metpath2vecinit_64_chan_0.01_lr_2.txt
 

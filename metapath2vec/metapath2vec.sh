@@ -30,4 +30,4 @@ source /zhome/45/0/155089/deeplearning/venv/bin/activate
 
 
 # Run the Python script with the --epochs argument
-python metapath2vec_2getembedding.py &> output_metapath2vec_get_dat_embedding_4epochs.txt
+python metapath2vec_2getembedding.py &> outputs/output_metapath2vec_get_dat_embedding_4epochs.txt
