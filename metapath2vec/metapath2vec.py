@@ -6,7 +6,7 @@ from torch_sparse import transpose
 import torch
 import wandb
 
-wandb.login(key="9eb3b1f3cebec1405d992e1e1f05fe7aa1d718e4")
+wandb.login(key="API_KEY")
 
 # %%
 run = wandb.init(
